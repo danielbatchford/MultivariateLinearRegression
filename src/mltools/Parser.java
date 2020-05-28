@@ -66,7 +66,7 @@ public class Parser implements ParserInterface {
 
 
             case DB:
-            case DATA:
+            case CSV:
                 throw new MLToolsException("Format not implemented yet");
             default:
                 throw new MLToolsException("Invalid file format specified");

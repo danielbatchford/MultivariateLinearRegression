@@ -75,7 +75,7 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
                 }
                 break;
             case DB:
-            case DATA:
+            case CSV:
                 throw new MLToolsException("Format not implemented yet");
         }
     }
@@ -101,7 +101,7 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
                 }
 
             case DB:
-            case DATA:
+            case CSV:
                 throw new MLToolsException("File formats not implemented yet");
         }
     }
@@ -110,11 +110,10 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
     public void test(List<DataPair> data) {
 
         int successCount = 0;
-        int size = data.size();
-        for(int i = 0; i < size; i++){
-            DataPair pair = data.get(i);
-            if((h(pair.getVals()) >= 0.5 && pair.getRes() == 1) || h(pair.getVals()) <= 0.5 && pair.getRes() == 0) successCount++;
+        for (DataPair pair : data) {
+            if ((h(pair.getVals()) >= 0.5 && pair.getRes() == 1) || h(pair.getVals()) <= 0.5 && pair.getRes() == 0)
+                successCount++;
         }
-        System.out.println("Testing gave an accuracy of: "+ (float) successCount / (float) size);
+        System.out.println("Testing gave an accuracy of: "+ (float) successCount / (float) data.size());
     }
 }

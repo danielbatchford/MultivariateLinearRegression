@@ -14,11 +14,13 @@ public class Main {
         Parser p = new Parser();
         List<DataPair> data = p.load("./trainingdata/sample.txt", Format.TEXT, false);
         Regression r = new MultivariateLinearRegression(data, 0.05f);
-        KNN k = new KNN(data);
-        r.learn();
+
+        KNN k = new KNN(data,4);
+
+        k.test(data);
 
 
-        r.test(data);
+        //r.test(data);
 
 
     }
