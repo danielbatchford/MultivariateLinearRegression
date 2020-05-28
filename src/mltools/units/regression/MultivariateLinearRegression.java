@@ -1,4 +1,4 @@
-package mltools.units;
+package mltools.units.regression;
 
 import mltools.DataPair;
 import mltools.Format;
@@ -25,8 +25,8 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
     }
 
     @Override
-    public Float predict(DataPair pair) {
-        return h(pair.getVals());
+    public Float predict(Float[] cord) {
+        return h(cord);
     }
 
     @Override

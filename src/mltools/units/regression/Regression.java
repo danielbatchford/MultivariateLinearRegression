@@ -1,12 +1,13 @@
-package mltools.units;
+package mltools.units.regression;
 
 import mltools.DataPair;
 import mltools.Format;
 import mltools.MLToolsException;
+import mltools.units.Unit;
 
 import java.util.List;
 
-public abstract class Regression {
+public abstract class Regression implements Unit {
 
     List<DataPair> data;
 
@@ -14,7 +15,7 @@ public abstract class Regression {
         this.data = data;
     }
 
-    public Float predict(DataPair pair) {
+    public Float predict(Float[] cord) {
         return 0.0f;
     }
 
