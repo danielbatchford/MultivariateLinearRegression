@@ -1,8 +1,6 @@
 package mltools.units.knn;
 
 import mltools.DataPair;
-import mltools.Format;
-import mltools.MLToolsException;
 import mltools.units.Unit;
 
 import java.util.*;
@@ -10,15 +8,15 @@ import java.util.*;
 public class KNN implements Unit {
 
 
-    List<DataPair> data;
-    int k;
+    final List<DataPair> data;
+    final int k;
 
     public KNN(List<DataPair> data, int k) {
         this.data = data;
         this.k = k;
     }
 
-    public Float predict(Float[] cord) {
+    public float predict(Float[] cord) {
         Comparator<DataPair> comparator = (a, b) -> {
             Float[] af = a.getVals(), bf = b.getVals();
 
@@ -27,20 +25,14 @@ public class KNN implements Unit {
                 aSum += Math.pow(af[i]-cord[i],2);
                 bSum += Math.pow(bf[i]-cord[i],2);
             }
-            /*System.out.println("A: "+af[0]+","+af[1]+" B: "+bf[0]+","+bf[1]);
-            System.out.println("ASUM: "+aSum+", BSUM: "+bSum);
-            System.out.println();*/
+
             if(aSum == bSum) return 0;
             return (aSum > bSum)? 1 : -1;
         };
 
         Set<DataPair> set = new TreeSet<>(comparator);
 
-
-        for(DataPair pair: data){
-            set.add(pair);
-
-        }
+        set.addAll(data);
 
         Iterator<DataPair> iterator = set.iterator();
 

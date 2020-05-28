@@ -8,5 +8,5 @@ public interface Unit {
 
     void test(List<DataPair> data);
 
-    Float predict(Float[] cord);
+    float predict(Float[] cord);
 }

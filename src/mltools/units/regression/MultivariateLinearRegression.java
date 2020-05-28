@@ -3,6 +3,7 @@ package mltools.units.regression;
 import mltools.DataPair;
 import mltools.Format;
 import mltools.MLToolsException;
+import mltools.units.Unit;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,25 +13,17 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class MultivariateLinearRegression extends Regression { //Assuming Linear Seperable eg line, plane, only binary classification
+public class MultivariateLinearRegression extends Regression implements Unit { //Assuming Linear Seperable eg line, plane, only binary classification
 
-    float[] coeff;
-    float learningRate;
+
 
     public MultivariateLinearRegression(List<DataPair> data, float learningRate) {
-        super(data);
-        this.learningRate = learningRate;
-        coeff = new float[data.get(0).getNoOfDim() + 1]; //Plus 1 to account for constant
+        super(data,learningRate);
 
     }
 
     @Override
-    public Float predict(Float[] cord) {
-        return h(cord);
-    }
-
-    @Override
-    public void learn(boolean displayLearning) {
+    public void learn(boolean displayLearning) { //Figure out way to not be able to run test without learn
         System.out.println("Initialising Learning Sequence");
 
         for (int i = 0, size = data.size(); i < size; i++) {
@@ -43,6 +36,9 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
             for (int j = 0, max = coeff.length - 1; j < max; j++) {
                 coeff[j + 1] += learningRate * loss * vals[j];
             }
+            String s="";
+            for(float f: coeff) s+=f+" ";
+            System.out.println(s);
             if(displayLearning) System.out.println("Loss at data row " + (i + 1) + " = " + loss);
         }
     }
@@ -51,7 +47,7 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
         learn(false);
     }
 
-    private Float h(Float[] X) {
+    public float h(Float[] X) {
         float sum = coeff[0];
         for (int i = 0; i < X.length; i++) {
             sum += coeff[i + 1] * X[i];
@@ -60,51 +56,9 @@ public class MultivariateLinearRegression extends Regression { //Assuming Linear
     }
 
     @Override
-    public void saveCoefficients(String fileName, Format format) throws MLToolsException {
-        switch (format) {
-            case TEXT:
-                try {
-                    PrintWriter writer = new PrintWriter(fileName);
+    public float predict(Float[] val) { return h(val);}
 
-                    for (Float f : coeff) {
-                        writer.println(f);
-                    }
-                    writer.close();
-                } catch (FileNotFoundException e) {
-                    throw new MLToolsException("Cannot find the write path at " + fileName);
-                }
-                break;
-            case DB:
-            case CSV:
-                throw new MLToolsException("Format not implemented yet");
-        }
-    }
 
-    @Override
-    public void loadCoefficients(String filename, Format format) throws MLToolsException {
-
-        switch (format) {
-            case TEXT:
-                try {
-                    System.out.println("Loading coefficients from file " + filename);
-                    List<Float> tempCoeff = new ArrayList<>();
-                    File file = new File(filename);
-                    Scanner scanner = new Scanner(file);
-                    while (scanner.hasNext()) {
-                        tempCoeff.add(scanner.nextFloat());
-                    }
-                    scanner.close();
-                    System.out.println("Sucessfully loaded coefficients");
-
-                } catch (FileNotFoundException e) {
-                    throw new MLToolsException("Cannot load coefficients from file " + filename+", file not found");
-                }
-
-            case DB:
-            case CSV:
-                throw new MLToolsException("File formats not implemented yet");
-        }
-    }
 
     @Override
     public void test(List<DataPair> data) {
