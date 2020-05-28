@@ -1,14 +1,23 @@
-import networktools.Format;
-import networktools.Network;
-import networktools.NetworkToolsException;
+import mltools.DataPair;
+import mltools.Format;
+import mltools.MLToolsException;
+import mltools.Parser;
+import mltools.units.MultivariateLinearRegression;
+import mltools.units.Regression;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws NetworkToolsException {
-        Network n = new Network(new int[]{3,3,5});
-        n.load("./trainingdata/sample.txt",Format.TEXT,false);
+    public static void main(String[] args) throws MLToolsException {
+        Parser p = new Parser();
+        List<DataPair> data = p.load("./trainingdata/sample.txt", Format.TEXT, false);
+        Regression r = new MultivariateLinearRegression(data, 0.05f);
+        r.learn();
+
+
+        r.test(data);
+
+
     }
 }
