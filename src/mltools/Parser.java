@@ -18,6 +18,7 @@ public class Parser implements ParserInterface {
 
 
         switch (format) {
+            case CSV:
             case TEXT:
 
                 try {
@@ -32,9 +33,11 @@ public class Parser implements ParserInterface {
                         lineNo++;
                     }
                     List<DataPair> data = new ArrayList<>();
+                    String delimiter = (Format.CSV == format) ? "," : " ";
 
                     while (scanner.hasNextLine()) {
-                        String[] stringVals = scanner.nextLine().split(" ");
+
+                        String[] stringVals = scanner.nextLine().split(delimiter);
                         if (stringVals.length <= 1) {
                             System.out.println("Bad input at line " + lineNo + ", skipping.");
                             continue;
@@ -66,7 +69,6 @@ public class Parser implements ParserInterface {
 
 
             case DB:
-            case CSV:
                 throw new MLToolsException("Format not implemented yet");
             default:
                 throw new MLToolsException("Invalid file format specified");
