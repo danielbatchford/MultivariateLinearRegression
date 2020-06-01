@@ -36,9 +36,7 @@ public class MultivariateLinearRegression extends Regression implements Unit { /
             for (int j = 0, max = coeff.length - 1; j < max; j++) {
                 coeff[j + 1] += learningRate * loss * vals[j];
             }
-            String s="";
-            for(float f: coeff) s+=f+" ";
-            System.out.println(s);
+
             if(displayLearning) System.out.println("Loss at data row " + (i + 1) + " = " + loss);
         }
     }

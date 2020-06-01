@@ -17,11 +17,9 @@ public class Main {
         r.learn(false);
         r.test(data);
 
-        r.loadCoefficients("./trainingdata/tempCoeff.txt",Format.TEXT);
+        r.saveCoefficients("./outputs/tempCoeff.txt",Format.TEXT);
 
-        r.test(data);
-
-
+        System.out.println(r.predict(new Float[]{20.0f,50.0f}));
     }
 
     //Make number of dimensions not rely on first row

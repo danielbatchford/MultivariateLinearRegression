@@ -42,6 +42,7 @@ public abstract class Regression implements Unit {
                         writer.println(f);
                     }
                     writer.close();
+                    System.out.println("Coefficients successfully wrote to file "+fileName);
                 } catch (FileNotFoundException e) {
                     throw new MLToolsException("Cannot find the write path at " + fileName);
                 }
