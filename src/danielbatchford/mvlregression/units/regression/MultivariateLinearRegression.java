@@ -1,24 +1,16 @@
-package mltools.units.regression;
+package danielbatchford.mvlregression.units.regression;
 
-import mltools.DataPair;
-import mltools.Format;
-import mltools.MLToolsException;
-import mltools.units.Unit;
+import danielbatchford.mvlregression.DataPair;
+import danielbatchford.mvlregression.units.Unit;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
-public class MultivariateLinearRegression extends Regression implements Unit { //Assuming Linear Seperable eg line, plane, only binary classification
-
+public class MultivariateLinearRegression extends Regression implements Unit {
 
 
     public MultivariateLinearRegression(List<DataPair> data, float learningRate) {
-        super(data,learningRate);
+        super(data, learningRate);
 
     }
 
@@ -37,11 +29,11 @@ public class MultivariateLinearRegression extends Regression implements Unit { /
                 coeff[j + 1] += learningRate * loss * vals[j];
             }
 
-            if(displayLearning) System.out.println("Loss at data row " + (i + 1) + " = " + loss);
+            if (displayLearning) System.out.println("Loss at data row " + (i + 1) + " = " + loss);
         }
     }
 
-    public void learn(){
+    public void learn() {
         learn(false);
     }
 
@@ -54,8 +46,9 @@ public class MultivariateLinearRegression extends Regression implements Unit { /
     }
 
     @Override
-    public float predict(Float[] val) { return h(val);}
-
+    public float predict(Float[] val) {
+        return h(val);
+    }
 
 
     @Override
@@ -66,6 +59,6 @@ public class MultivariateLinearRegression extends Regression implements Unit { /
             if ((h(pair.getVals()) >= 0.5 && pair.getRes() == 1) || h(pair.getVals()) <= 0.5 && pair.getRes() == 0)
                 successCount++;
         }
-        System.out.println("Testing gave an accuracy of: "+ (float) successCount / (float) data.size());
+        System.out.println("Testing gave an accuracy of: " + (float) successCount / (float) data.size());
     }
 }

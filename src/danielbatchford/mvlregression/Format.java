@@ -1,5 +1,5 @@
-package mltools;
+package danielbatchford.mvlregression;
 
 public enum Format { //Add in smart check for file format eventually?
-    TEXT, DB, CSV
+    TEXT, CSV
 }

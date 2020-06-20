@@ -1,4 +1,4 @@
-package mltools;
+package danielbatchford.mvlregression;
 
 public class DataPair {
 

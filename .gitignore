@@ -1,5 +1,6 @@
 .idea
-SimpleLinearRegression.iml
+MultivariateLinearRegression.iml
 outputs
 trainingdata
 out/
+src/Main.java

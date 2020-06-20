@@ -1,4 +1,4 @@
-package mltools;
+package danielbatchford.mvlregression;
 
 import java.util.List;
 

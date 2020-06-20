@@ -1,6 +1,6 @@
-package mltools.units;
+package danielbatchford.mvlregression.units;
 
-import mltools.DataPair;
+import danielbatchford.mvlregression.DataPair;
 
 import java.util.List;
 

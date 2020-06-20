@@ -1,4 +1,4 @@
-package mltools;
+package danielbatchford.mvlregression;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,10 +66,6 @@ public class Parser implements ParserInterface {
                 } catch (FileNotFoundException e) {
                     throw new MLToolsException("File cannot be found at file path " + filePath);
                 }
-
-
-            case DB:
-                throw new MLToolsException("Format not implemented yet");
             default:
                 throw new MLToolsException("Invalid file format specified");
         }
