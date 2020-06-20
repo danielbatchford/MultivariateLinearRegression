@@ -11,7 +11,7 @@ This will transform your data into a list of `DataPair` objects.
 A `DataPair` object contains a `Float[]` list of values and a single `Integer` result (either 0 or 1).
 
 Next, read your data:  
-`List<DataPair> myData = myParser.load("filenmae.txt", Format.TEXT, arg3)`, where `arg3` is whether to omit the header (ignore the first line).
+`List<DataPair> myData = myParser.load("filename.txt", Format.TEXT, arg3)`, where `arg3` is whether to omit the header (ignore the first line).
 
 Create a Regression model:  
 `Regression myModel = new MultivariateLinearRegression(myData, 0.01f)`
@@ -24,7 +24,7 @@ Testing output can be obtained using:
 This will print out testing accuracy to the console.
 
 Finally, values can be predicted from the model:  
-`myModel.predict(arg1)` where `arg1` is a `Float[]` of input variables. A single float between 0 and 1 will be returned.
+`myModel.predict(arg1)`, where `arg1` is a `Float[]` of input variables. A single float between 0 and 1 will be returned.
 This represents the closeness to each class in the classification, 0 & 1.
 
 ## Saving And Loading Coefficients
@@ -33,7 +33,7 @@ Coefficients of the classification function can be saved to a text file, for lat
 Coefficients can be written to a text file using:  
 `myModel.saveCoefficients("filename.txt")`  
 
-Coefficients can be read using: 
+Coefficients can be read using:  
 `myModel.loadCoefficients("filename.txt")` 
 
 ## Valid Data Formats
