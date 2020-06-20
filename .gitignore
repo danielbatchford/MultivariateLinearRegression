@@ -1,5 +1,4 @@
 .idea
-NeuralNetwork.iml
-MachineLearningTools.iml
+SimpleLinearRegression.iml
 outputs
 trainingdata
