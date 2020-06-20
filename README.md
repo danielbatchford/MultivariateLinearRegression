@@ -42,10 +42,10 @@ Currently, the following formats are supported:
 - `.csv`
 
 Text data should be in the following format:
-`x0 x1 x2 x3 r\n` where `xi` represents the i'th data value and `r` represents the result.
+`x0 x1 x2 x3 ... xi ... xn r\n` where `xi` represents the i'th data value and `r` represents the result.
 
 Similarly, CSV data should be in the following format:
-`x0, x1, x2, x3, r\n`
+`x0, x1, x2, x3, ... xi, ... xn, r\n`
 
 ## Contributing
 
