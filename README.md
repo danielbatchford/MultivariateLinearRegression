@@ -2,7 +2,7 @@
 ## About
 This is a multivariate linear regression library used to classify n-variable data. It uses a sigmoid cost function in order to classify data read from a file. It can then later predict the classification of a new data point, as well as calculate accuracy across a file of test data.
 
-This model is designed for linear seperable data only. It also assumes the data fits into two classes.
+This model is designed for linear seperable data only. It also assumes the data fits into two classes (binary classification).
 
 ## How To Use
 Begin by creating a `Parser` object.  
