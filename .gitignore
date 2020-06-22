@@ -1,6 +1,6 @@
 .idea
 MultivariateLinearRegression.iml
-outputs
-trainingdata
+testdata.txt
+data.txt
 out/
 src/Main.java

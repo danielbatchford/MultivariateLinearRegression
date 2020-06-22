@@ -19,8 +19,9 @@ Create a Regression model:
 Train the model:  
 `myModel.learn(arg1)`, where `arg1` is whether to print out progress to the console.
 
-Testing output can be obtained using:  
-`myModel.test(testingData.txt)`  
+Testing output can be obtained using:
+`List<DataPair myTestData = myParser.load("filename.txt", Format.TEXT, arg3)` where `arg3` is whether to omit the header.  
+`myModel.test()`  
 This will print out testing accuracy to the console.
 
 Finally, values can be predicted from the model:  
